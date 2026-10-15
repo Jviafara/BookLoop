@@ -6,6 +6,8 @@
 
 @theme {
   --font-bebas-neue: var(--bebas-neue);
+  --font-seaweed-script: var(--font-seaweed-script);
+
   --breakpoint-xs: 480px;
 
   --color-primary: #E7C9A5;
