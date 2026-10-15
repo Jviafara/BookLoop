@@ -1,10 +1,15 @@
 import BookList from '@/components/BookList'
 import BookOverview from '@/components/BookOverview'
+import { sampleBooks } from '@/constants'
 
 const Home = () => (
   <>
-    <BookOverview />
-    <BookList />
+    <BookOverview {...sampleBooks[0]} />
+    <BookList
+      title='Latest'
+      books={sampleBooks}
+      containerClass='mt-28'
+    />
   </>
 )
 
