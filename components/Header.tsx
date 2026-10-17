@@ -16,7 +16,7 @@ const Header = () => {
           alt='BookLoop'
           width={40}
           height={40}
-          className='w-auto h-auto'
+          className='h-10 w-10'
         />
       </Link>
       <ul className=' flex flex-row items-center gap-8'>

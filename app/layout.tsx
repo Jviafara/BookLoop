@@ -1,16 +1,26 @@
 import type { Metadata } from 'next'
-import { Bebas_Neue, IBM_Plex_Sans } from 'next/font/google'
+import { Bebas_Neue, IBM_Plex_Sans, Seaweed_Script } from 'next/font/google'
 import './globals.css'
 
 const bebasNeue = Bebas_Neue({
-  variable: '--bebas-neue',
-  subsets: ['latin'],
   weight: '400',
+  subsets: ['latin'],
+  variable: '--font-bebas-neue',
+  display: 'swap',
 })
 
 const ibmPlexSans = IBM_Plex_Sans({
-  variable: '--font-ibm-plex-sans',
+  weight: ['400', '500', '600', '700'],
   subsets: ['latin'],
+  variable: '--font-ibm-plex-sans',
+  display: 'swap',
+})
+
+const seaweedScript = Seaweed_Script({
+  variable: '--font-seaweed-script',
+  subsets: ['latin'],
+  weight: '400',
+  display: 'swap',
 })
 
 export const metadata: Metadata = {
@@ -22,7 +32,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<'/'>) {
   return (
     <html lang='en'>
-      <body className={`${bebasNeue.variable} ${ibmPlexSans.variable} h-full antialiased`}>{children}</body>
+      <body className={`${bebasNeue.variable} ${ibmPlexSans.variable} ${seaweedScript.variable} h-full antialiased`}>
+        {children}
+      </body>
     </html>
   )
 }
