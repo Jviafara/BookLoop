@@ -12,12 +12,17 @@ const variantStyles: Record<BookCoverVariant, string> = {
 
 interface Props {
   className?: string
-  variant: BookCoverVariant
+  variant?: BookCoverVariant
   coverColor: string
   coverImage: string
 }
 
-const BookCover = ({ variant = 'regular', className, coverColor = '#012B48 ', coverImage = 'https://placehold.co/400x600.png' }: Props) => {
+const BookCover = ({
+  variant = 'regular',
+  className,
+  coverColor = '#012B48 ',
+  coverImage = 'https://placehold.co/400x600.png',
+}: Props) => {
   return (
     <div className={cn('relative transition-all duration-300', variantStyles[variant], className)}>
       {/* Book Side SVG */}
@@ -32,7 +37,9 @@ const BookCover = ({ variant = 'regular', className, coverColor = '#012B48 ', co
           src={coverImage}
           alt='Book Cover'
           fill
-          className='rounded-sm object-fill '
+          sizes='100%'
+          loading='lazy'
+          className='rounded-sm object-fill'
         />
       </div>
     </div>

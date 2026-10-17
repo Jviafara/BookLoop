@@ -94,7 +94,8 @@ export const sampleBooks = [
     rating: 4.7,
     totalCopies: 9,
     availableCopies: 5,
-    description: 'An essential guide to understanding the core mechanisms of JavaScript, focusing on scope and closures.',
+    description:
+      'An essential guide to understanding the core mechanisms of JavaScript, focusing on scope and closures.',
     coverColor: '#f8e036',
     coverUrl: 'https://m.media-amazon.com/images/I/7186YfjgHHL._AC_UF1000,1000_QL80_.jpg',
     videoUrl: '/sample-video.mp4?updatedAt=1722593504152',
@@ -108,11 +109,13 @@ export const sampleBooks = [
     rating: 4.5,
     totalCopies: 78,
     availableCopies: 50,
-    description: 'A magical tale of Santiago, an Andalusian shepherd boy, who embarks on a journey to find a worldly treasure.',
+    description:
+      'A magical tale of Santiago, an Andalusian shepherd boy, who embarks on a journey to find a worldly treasure.',
     coverColor: '#ed6322',
     coverUrl: 'https://m.media-amazon.com/images/I/61HAE8zahLL._AC_UF1000,1000_QL80_.jpg',
     videoUrl: '/sample-video.mp4?updatedAt=1722593504152',
-    summary: 'A magical tale of Santiago, an Andalusian shepherd boy, who embarks on a journey to find a worldly treasure.',
+    summary:
+      'A magical tale of Santiago, an Andalusian shepherd boy, who embarks on a journey to find a worldly treasure.',
   },
   {
     id: 5,
@@ -122,11 +125,13 @@ export const sampleBooks = [
     rating: 4.7,
     totalCopies: 23,
     availableCopies: 23,
-    description: 'Rules for focused success in a distracted world, teaching how to cultivate deep focus to achieve peak productivity.',
+    description:
+      'Rules for focused success in a distracted world, teaching how to cultivate deep focus to achieve peak productivity.',
     coverColor: '#ffffff',
     coverUrl: 'https://m.media-amazon.com/images/I/81JJ7fyyKyS.jpg',
     videoUrl: '/sample-video.mp4?updatedAt=1722593504152',
-    summary: 'Rules for focused success in a distracted world, teaching how to cultivate deep focus to achieve peak productivity.',
+    summary:
+      'Rules for focused success in a distracted world, teaching how to cultivate deep focus to achieve peak productivity.',
   },
   {
     id: 6,
@@ -136,11 +141,13 @@ export const sampleBooks = [
     rating: 4.8,
     totalCopies: 56,
     availableCopies: 56,
-    description: 'A handbook of agile software craftsmanship, offering best practices and principles for writing clean and maintainable code.',
+    description:
+      'A handbook of agile software craftsmanship, offering best practices and principles for writing clean and maintainable code.',
     coverColor: '#080c0d',
     coverUrl: 'https://m.media-amazon.com/images/I/71T7aD3EOTL._UF1000,1000_QL80_.jpg',
     videoUrl: '/sample-video.mp4?updatedAt=1722593504152',
-    summary: 'A handbook of agile software craftsmanship, offering best practices and principles for writing clean and maintainable code.',
+    summary:
+      'A handbook of agile software craftsmanship, offering best practices and principles for writing clean and maintainable code.',
   },
   {
     id: 7,
@@ -164,11 +171,13 @@ export const sampleBooks = [
     rating: 4.8,
     totalCopies: 10,
     availableCopies: 5,
-    description: 'Morgan Housel explores the unique behaviors and mindsets that shape financial success and decision-making.',
+    description:
+      'Morgan Housel explores the unique behaviors and mindsets that shape financial success and decision-making.',
     coverColor: '#ffffff',
     coverUrl: 'https://m.media-amazon.com/images/I/81Dky+tD+pL._AC_UF1000,1000_QL80_.jpg',
     videoUrl: '/sample-video.mp4?updatedAt=1722593504152',
-    summary: 'Morgan Housel explores the unique behaviors and mindsets that shape financial success and decision-making.',
+    summary:
+      'Morgan Housel explores the unique behaviors and mindsets that shape financial success and decision-making.',
   },
 ]
 

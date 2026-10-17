@@ -2,7 +2,17 @@ import Image from 'next/image'
 import { Button } from './ui/button'
 import BookCover from './BookCover'
 
-const BookOverview = ({ title, author, genre, rating, totalCopies, availableCopies, description, coverColor, coverUrl }: Book) => {
+const BookOverview = ({
+  title,
+  author,
+  genre,
+  rating,
+  totalCopies,
+  availableCopies,
+  description,
+  coverColor,
+  coverUrl,
+}: Book) => {
   return (
     <section className='book-overview'>
       <div className=' flex flex-1 flex-col gap-5'>
@@ -21,6 +31,7 @@ const BookOverview = ({ title, author, genre, rating, totalCopies, availableCopi
               alt='star'
               width={22}
               height={22}
+              className='w-5.5 h-5.5'
             />
             <p>{rating}</p>
           </div>
@@ -40,6 +51,7 @@ const BookOverview = ({ title, author, genre, rating, totalCopies, availableCopi
             alt='Book'
             width={20}
             height={20}
+            className='w-5 h-5'
           />
           <p className='font-bebas-neue text-xl text-dark-100 '>Borrow</p>
         </Button>
@@ -53,11 +65,10 @@ const BookOverview = ({ title, author, genre, rating, totalCopies, availableCopi
             coverImage={coverUrl}
           />
           <div className='absolute left-16 top-10 rotate-12 opacity-40 max-sm:hidden '>
-            {' '}
             <BookCover
               variant='wide'
               coverColor={coverColor}
-              coverImage={coverUrl }
+              coverImage={coverUrl}
             />
           </div>
         </div>
