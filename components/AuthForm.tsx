@@ -62,7 +62,14 @@ const AuthForm = <T extends FieldValues>({ type, schema, defaultValues, onSubmit
                   {FIELD_NAMES[field.name as keyof typeof FIELD_NAMES]}
                 </FieldLabel>
                 {field.name === 'universityCard' ? (
-                  <FileUploader />
+                  <FileUploader
+                    type='image'
+                    accept='image/*'
+                    placeholder='Upload your ID'
+                    folder='ids'
+                    variant='dark'
+                    onFileChange={field.onChange}
+                  />
                 ) : (
                   <Input
                     {...field}
@@ -71,7 +78,7 @@ const AuthForm = <T extends FieldValues>({ type, schema, defaultValues, onSubmit
                     type={FIELD_TYPES[field.name as keyof typeof FIELD_TYPES]}
                     {...field}
                     autoComplete='off'
-                    className='form-input'
+                    className='form-input '
                   />
                 )}
 
