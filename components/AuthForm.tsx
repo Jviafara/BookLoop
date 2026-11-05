@@ -4,14 +4,14 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm, SubmitHandler, DefaultValues, FieldValues, Controller, Path } from 'react-hook-form'
 import { ZodType } from 'zod'
 
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
-import { Field, FieldDescription, FieldError, FieldGroup, FieldLabel } from '@/components/ui/field'
+import { Field, FieldError, FieldLabel } from '@/components/ui/field'
 import { Input } from '@/components/ui/input'
-import { InputGroup, InputGroupAddon, InputGroupText, InputGroupTextarea } from '@/components/ui/input-group'
 import Link from 'next/link'
 import { Button } from './ui/button'
 import { FIELD_NAMES, FIELD_TYPES } from '@/constants'
 import FileUploader from './FileUploader'
+import { toast } from '@/hooks/use-toast'
+import { useRouter } from 'next/navigation'
 
 interface Props<T extends FieldValues> {
   type: 'SIGN_IN' | 'SIGN_UP'
@@ -23,6 +23,8 @@ interface Props<T extends FieldValues> {
 const AuthForm = <T extends FieldValues>({ type, schema, defaultValues, onSubmit }: Props<T>) => {
   const isSignedIn = type === 'SIGN_IN'
 
+  const router = useRouter()
+
   const form = useForm({
     resolver: zodResolver(schema),
     defaultValues: defaultValues as DefaultValues<T>,
@@ -30,7 +32,20 @@ const AuthForm = <T extends FieldValues>({ type, schema, defaultValues, onSubmit
 
   const handleSubmit: SubmitHandler<T> = async data => {
     // Do something with the form values.
-    console.log(data)
+    const result = await onSubmit(data)
+    if (result && result.success) {
+      toast({
+        title: 'Success',
+        description: isSignedIn ? 'You have successfully signed in!' : 'You have successfully signed up!',
+      })
+
+      router.push('/')
+    } else if (result && !result.success) {
+      toast({
+        title: `${isSignedIn ? 'Sign In' : 'Sign Up'} Failed`,
+        description: result.error || 'An error occurred while processing your request.',
+      })
+    }
   }
 
   return (
