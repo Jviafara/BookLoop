@@ -19,7 +19,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
         const isPasswordValid = await compare(credentials.password.toString(), user[0].password)
 
-        if (isPasswordValid) return null
+        if (!isPasswordValid) return null
 
         return {
           id: user[0].id.toString(),
@@ -30,9 +30,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     }),
   ],
   pages: {
-    signIn: '/(auth)/sign-in',
-    signOut: '/(auth)/sign-out',
-    error: '/(auth)/sign-in',
+    signIn: '/sign-in',
+    error: '/sign-in',
   },
   callbacks: {
     async jwt({ token, user }) {

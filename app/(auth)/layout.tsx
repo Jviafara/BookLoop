@@ -1,9 +1,14 @@
+import { auth } from '@/auth'
 import Image from 'next/image'
-import { ReactNode } from 'react'
+import { redirect } from 'next/navigation'
+import { ReactNode, Suspense } from 'react'
 
-const Layout = ({ children }: { children: ReactNode }) => {
+async function AuthRedirect({ children }: { children: ReactNode }) {
+  const session = await auth()
+  if (session) redirect('/')
+
   return (
-    <main className='auth-container'>
+    <>
       <section className='auth-form'>
         <div className='auth-box'>
           <div className='flex flex-row gap-2'>
@@ -29,6 +34,16 @@ const Layout = ({ children }: { children: ReactNode }) => {
           className='size-full object-cover'
         />
       </section>
+    </>
+  )
+}
+
+const Layout = async ({ children }: { children: ReactNode }) => {
+  return (
+    <main className='auth-container'>
+      <Suspense fallback={<div>Loading...</div>}>
+        <AuthRedirect>{children}</AuthRedirect>
+      </Suspense>
     </main>
   )
 }

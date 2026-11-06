@@ -3,24 +3,23 @@
 // Inspired by react-hot-toast library
 import * as React from 'react'
 
-import type { ToastActionElement, ToastProps } from '@/components/ui/toast'
+import { toastManager } from '@/components/ui/toast'
 
 const TOAST_LIMIT = 1
 const TOAST_REMOVE_DELAY = 1000000
 
-type ToasterToast = ToastProps & {
-  id: string
+type Toast = {
   title?: React.ReactNode
   description?: React.ReactNode
-  action?: ToastActionElement
+  variant?: 'default' | 'destructive'
+  duration?: number
 }
 
-const actionTypes = {
-  ADD_TOAST: 'ADD_TOAST',
-  UPDATE_TOAST: 'UPDATE_TOAST',
-  DISMISS_TOAST: 'DISMISS_TOAST',
-  REMOVE_TOAST: 'REMOVE_TOAST',
-} as const
+type ToasterToast = Toast & {
+  id: string
+  open?: boolean
+  onOpenChange?: (open: boolean) => void
+}
 
 let count = 0
 
@@ -29,23 +28,21 @@ function genId() {
   return count.toString()
 }
 
-type ActionType = typeof actionTypes
-
 type Action =
   | {
-      type: ActionType['ADD_TOAST']
+      type: 'ADD_TOAST'
       toast: ToasterToast
     }
   | {
-      type: ActionType['UPDATE_TOAST']
+      type: 'UPDATE_TOAST'
       toast: Partial<ToasterToast>
     }
   | {
-      type: ActionType['DISMISS_TOAST']
+      type: 'DISMISS_TOAST'
       toastId?: ToasterToast['id']
     }
   | {
-      type: ActionType['REMOVE_TOAST']
+      type: 'REMOVE_TOAST'
       toastId?: ToasterToast['id']
     }
 
@@ -129,13 +126,35 @@ const listeners: Array<(state: State) => void> = []
 let memoryState: State = { toasts: [] }
 
 function dispatch(action: Action) {
+  if (action.type === 'ADD_TOAST') {
+    toastManager.add({
+      id: action.toast.id,
+      title: action.toast.title,
+      description: action.toast.description,
+      type: action.toast.variant === 'destructive' ? 'error' : undefined,
+      timeout: action.toast.duration ?? TOAST_REMOVE_DELAY,
+    })
+  } else if (action.type === 'UPDATE_TOAST' && action.toast.id) {
+    const updates: {
+      title?: React.ReactNode
+      description?: React.ReactNode
+      type?: string
+      timeout?: number
+    } = {}
+    if ('title' in action.toast) updates.title = action.toast.title
+    if ('description' in action.toast) updates.description = action.toast.description
+    if ('variant' in action.toast) updates.type = action.toast.variant === 'destructive' ? 'error' : undefined
+    if ('duration' in action.toast) updates.timeout = action.toast.duration
+    toastManager.update(action.toast.id, updates)
+  } else if (action.type === 'DISMISS_TOAST') {
+    toastManager.close(action.toastId)
+  }
+
   memoryState = reducer(memoryState, action)
   listeners.forEach(listener => {
     listener(memoryState)
   })
 }
-
-type Toast = Omit<ToasterToast, 'id'>
 
 function toast({ ...props }: Toast) {
   const id = genId()

@@ -3,7 +3,7 @@ import { Bebas_Neue, IBM_Plex_Sans, Seaweed_Script } from 'next/font/google'
 import './globals.css'
 import { Toaster } from '@/components/ui/toast'
 import { Suspense } from 'react'
-import AuthSession from '@/components/SessionWrapper'
+import AuthSession from '@/app/SessionWrapper'
 
 const bebasNeue = Bebas_Neue({
   weight: '400',
