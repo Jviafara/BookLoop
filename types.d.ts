@@ -15,3 +15,11 @@ interface Book {
 }
 
 type BookCoverVariant = 'extraSmall' | 'small' | 'medium' | 'regular' | 'wide'
+
+interface AuthCredentials {
+  email: string
+  password: string
+  fullName?: string
+  universityId?: number
+  universityCard?: string
+}
