@@ -16,6 +16,8 @@
     "@hookform/resolvers": "^5.9.2",
     "@imagekit/next": "^2.1.6",
     "@neondatabase/serverless": "^1.2.0",
+    "@upstash/ratelimit": "^2.2.0",
+    "@upstash/redis": "^1.41.0",
     "bcryptjs": "^3.0.3",
     "class-variance-authority": "^0.7.1",
     "cn": "^0.4.0",
